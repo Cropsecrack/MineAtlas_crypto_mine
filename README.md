@@ -1,4 +1,4 @@
-MINEATLAS — PROJECT README
+MINEATLAS — PROJECT README:
 ==========================
 
 MineAtlas is a single-file, dark-mode mining hardware and self-custody command center for comparing ASICs, home solo miners, hardware wallets, and site power infrastructure.
