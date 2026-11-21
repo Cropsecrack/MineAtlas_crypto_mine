@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CryptoDrop India — India-exclusive crypto hardware & ASIC miner dropshipping storefront. Shop Tangem Wallets, Bitmain Antminers, Ledger, Trezor & pay safely via UPI, NEFT, or BTC/ETH." />
+  <title>CryptoDrop India | India-Only Crypto Hardware & ASIC Dropship Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: {
+              bg: '#080c14',
+              surface: '#0f1623',
+              card: '#141d2e',
+              border: '#1f2b42',
+              cyan: '#06b6d4',
+              emerald: '#10b981'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: #080c14; color: #e2e8f0; }
+    .glass { background: rgba(15, 22, 35, 0.85); backdrop-filter: blur(12px); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes shimmerGlow {
+      0%, 100% { box-shadow: 0 0 18px rgba(6, 182, 212, 0.25); }
+      50% { box-shadow: 0 0 28px rgba(16, 185, 129, 0.4); }
+    }
+
+    .animate-fade-up { animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .animate-modal-pop { animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .animate-glow { animation: shimmerGlow 3s ease-in-out infinite; }
+    .card-hover { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 35px -10px rgba(6, 182, 212, 0.18); }
+
+    /* ---------- Motion system ---------- */
+    :root { --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+    .reveal.in-view { opacity: 1; transform: none; }
+
+    /* Product cards: staggered entrance when scrolled into view */
+    .product-card { opacity: 0; transform: translateY(24px) scale(0.98); }
+    .product-card.in-view { animation: cardIn 0.6s var(--ease-out) var(--d, 0ms) both; }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+    #productGrid { transition: opacity 0.18s ease, transform 0.18s ease; }
+    #productGrid.grid-leaving { opacity: 0; transform: translateY(8px); }
+
+    /* Card shine sweep on hover */
+    .card-media::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.12) 48%, transparent 66%);
+      transform: translateX(-120%); transition: transform 0.9s var(--ease-out);
+    }
+    .group:hover .card-media::after { transform: translateX(120%); }
+
+    /* Image skeleton + fade-in */
+    .img-skeleton { background: linear-gradient(100deg, #0b1220 30%, #141d2e 50%, #0b1220 70%); background-size: 200% 100%; animation: skeleton 1.4s linear infinite; }
+    .img-skeleton.is-loaded { animation: none; background: #020617; }
+    @keyframes skeleton { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+    .fade-img { opacity: 0; filter: blur(8px); transform: scale(1.04); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.8s var(--ease-out); }
+    .fade-img.loaded { opacity: 1; filter: none; transform: none; }
+    .group:hover .fade-img.loaded { transform: scale(1.07); }
+
+    /* Modals: animated in AND out */
+    .modal-shell { opacity: 0; transition: opacity 0.3s ease; }
+    .modal-shell.is-open { opacity: 1; }
+    .modal-shell .modal-panel { opacity: 0; transform: translateY(24px) scale(0.96); transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out); }
+    .modal-shell.is-open .modal-panel { opacity: 1; transform: none; }
+    .modal-shell.instant, .modal-shell.instant .modal-panel { transition: none !important; }
+
+    /* Product modal details */
+    .zoom-frame { overflow: hidden; }
+    .zoom-frame img { transition: transform 0.5s var(--ease-out); transform-origin: var(--zx, 50%) var(--zy, 50%); }
+    .zoom-frame:hover img { transform: scale(1.6); }
+    .stagger > * { animation: fadeSlideUp 0.5s var(--ease-out) both; }
+    .stagger > *:nth-child(1) { animation-delay: 60ms; }
+    .stagger > *:nth-child(2) { animation-delay: 110ms; }
+    .stagger > *:nth-child(3) { animation-delay: 160ms; }
+    .stagger > *:nth-child(4) { animation-delay: 210ms; }
+    .stagger > *:nth-child(5) { animation-delay: 260ms; }
+    .stagger > *:nth-child(6) { animation-delay: 310ms; }
+
+    /* Cart */
+    #cartOverlay { transition: opacity 0.35s ease; }
+    #cartDrawer { transition: transform 0.5s var(--ease-out); }
+    .cart-item { animation: cartItemIn 0.45s var(--ease-out) both; }
+    @keyframes cartItemIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+    .cart-item.removing { animation: cartItemOut 0.3s ease forwards; }
+    @keyframes cartItemOut { to { opacity: 0; transform: translateX(40px); height: 0; margin: 0; padding-top: 0; padding-bottom: 0; } }
+    .bump { animation: bump 0.5s var(--ease-spring); }
+    @keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.45); } 100% { transform: scale(1); } }
+    .fly-img { position: fixed; z-index: 70; pointer-events: none; border-radius: 14px; object-fit: cover; box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.5); }
+
+    /* Toast */
+    #toast { opacity: 0; transform: translateY(16px) scale(0.96); pointer-events: none; transition: opacity 0.3s ease, transform 0.4s var(--ease-spring); }
+    #toast.show { opacity: 1; transform: none; pointer-events: auto; }
+
+    /* Header elevation on scroll */
+    header.scrolled { box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.7); border-color: rgba(6, 182, 212, 0.2); }
+
+    /* Hero product showcase */
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    .float-a { animation: floatY 6s ease-in-out infinite; }
+    .float-b { animation: floatY 7s ease-in-out -2s infinite; }
+    .float-c { animation: floatY 5.5s ease-in-out -4s infinite; }
+    .parallax { transition: transform 0.6s var(--ease-out); }
+    .showcase-tile { transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease, border-color 0.3s ease; }
+    .showcase-tile:hover { transform: scale(1.04); border-color: rgba(6, 182, 212, 0.6); box-shadow: 0 25px 50px -15px rgba(6, 182, 212, 0.35); }
+
+    /* ROI miner preview crossfade */
+    #calcMinerPreview { transition: opacity 0.3s ease, transform 0.4s var(--ease-out); }
+    #calcMinerPreview.swapping { opacity: 0; transform: scale(0.94); }
+    .value-flash { animation: valueFlash 0.5s ease; }
+    @keyframes valueFlash { 0% { filter: brightness(1.8); } 100% { filter: none; } }
+
+    /* Shared-element transition between card image and detail modal */
+    ::view-transition-group(product-hero) { animation-duration: 0.5s; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .reveal, .product-card { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-orange-950/70 via-slate-900 to-emerald-950/70 border-b border-cyan-500/20 text-xs py-2 px-4 text-center text-slate-300">
+    <span class="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+      <span class="text-orange-300 font-semibold">🇮🇳 India-Exclusive Store</span>
+      <span class="hidden sm:inline text-slate-600">|</span>
+      <span class="text-emerald-400 font-medium">Escrow-Protected UPI, NEFT & BTC/ETH Only</span>
+      <span class="hidden sm:inline text-slate-600">|</span>
+      <span>Use <code class="bg-cyan-500/15 text-cyan-300 px-1.5 py-0.5 rounded font-mono">CRYPTO10</code> for 10% off Wallets</span>
+    </span>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header id="siteHeader" class="sticky top-0 z-40 glass border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-3">
+        <a href="#top" class="flex items-center gap-2.5 shrink-0 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+            <i data-lucide="cpu" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <span class="font-extrabold text-lg tracking-tight text-white">Crypto<span class="text-cyan-400">Drop</span></span>
+            <span class="hidden sm:inline-block ml-1.5 text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-orange-500/15 text-orange-300 border border-orange-500/30">India Only</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+          <a href="#catalog" class="hover:text-cyan-400 transition-colors duration-200">Catalog</a>
+          <a href="#roi-calc" class="hover:text-cyan-400 transition-colors duration-200">ASIC ROI Calc</a>
+          <a href="#dropship-hub" class="hover:text-cyan-400 transition-colors duration-200">Dropshipping</a>
+          <button type="button" id="openTrackerNavBtn" class="hover:text-cyan-400 transition-colors duration-200">Track Order</button>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-950/50 border border-emerald-500/40 text-emerald-300">
+            <i data-lucide="briefcase" class="w-3.5 h-3.5 text-emerald-400"></i>
+            Dropshipping Active
+          </span>
+
+          <button type="button" id="openCartBtn"
+            class="relative flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-cyan-500/20">
+            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Cart</span>
+            <span id="cartCountBadge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-slate-950 text-cyan-400 text-xs font-bold transition-transform duration-200">0</span>
+          </button>
+
+          <button type="button" id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 active:scale-95 transition-transform" aria-label="Toggle Menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t border-slate-800/80 space-y-2 text-sm animate-fade-up">
+        <a href="#catalog" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors">Product Catalog</a>
+        <a href="#roi-calc" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors">ASIC ROI Calculator</a>
+        <a href="#dropship-hub" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors">Dropshipper Fulfillment</a>
+        <button type="button" id="openTrackerMobileBtn" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200 transition-colors">Track Order</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden border-b border-slate-800/80 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-950/50 via-[#080c14] to-emerald-950/30">
+      <div class="pointer-events-none absolute -top-24 -right-24 w-[520px] h-[520px] rounded-full bg-cyan-500/10 blur-3xl"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 animate-fade-up">
+        <!-- Floating product showcase -->
+        <div id="heroShowcase" class="hidden xl:block absolute right-8 top-1/2 -translate-y-1/2 w-[470px] h-[440px]" aria-label="Featured products">
+          <div class="parallax absolute left-0 top-6 w-[330px]" data-depth="18">
+            <button type="button" class="float-a showcase-tile product-open-trigger block w-full rounded-3xl overflow-hidden border border-slate-700/70 bg-slate-950 shadow-2xl" data-id="antminer-s21-200">
+              <img src="images/products/antminer-s21-200.svg" alt="Bitmain Antminer S21" width="800" height="600" class="w-full aspect-[4/3] object-cover" />
+              <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950/85 text-emerald-300 border border-emerald-500/30">Antminer S21 · 200 TH/s</span>
+            </button>
+          </div>
+          <div class="parallax absolute right-0 top-0 w-[200px]" data-depth="32">
+            <button type="button" class="float-b showcase-tile product-open-trigger block w-full rounded-2xl overflow-hidden border border-slate-700/70 bg-slate-950 shadow-2xl" data-id="tangem-3pack">
+              <img src="images/products/tangem-3pack.svg" alt="Tangem Wallet 2.0" width="800" height="600" class="w-full aspect-[4/3] object-cover" />
+            </button>
+          </div>
+          <div class="parallax absolute right-6 bottom-0 w-[230px]" data-depth="26">
+            <button type="button" class="float-c showcase-tile product-open-trigger block w-full rounded-2xl overflow-hidden border border-slate-700/70 bg-slate-950 shadow-2xl" data-id="trezor-safe-5">
+              <img src="images/products/trezor-safe-5.svg" alt="Trezor Safe 5" width="800" height="600" class="w-full aspect-[4/3] object-cover" />
+            </button>
+          </div>
+        </div>
+        <div class="relative max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            100% India-Only Fulfillment • Mumbai, Bengaluru & Delhi NCR Hubs
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
+            Tangem Wallets, ASIC Miners & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Safe India Dropshipping</span>
+          </h1>
+          <p class="text-slate-300 text-base sm:text-lg mb-6 leading-relaxed">
+            Strictly serving Indian buyers & resellers. Source CC EAL6+ Tangem NFC cards and Bitmain Antminer S21 rigs with escrow-protected UPI, NEFT, or <strong>BTC / ETH</strong> payments.
+          </p>
+
+          <!-- India Pincode Serviceability Checker -->
+          <form id="pincodeCheckForm" class="flex flex-col sm:flex-row gap-2 max-w-md mb-6">
+            <div class="relative flex-1">
+              <i data-lucide="map-pin" class="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="heroPincodeInput" maxlength="6" placeholder="Check Indian Pincode (e.g. 641001)"
+                class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-950/90 border border-slate-700 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors" />
+            </div>
+            <button type="submit" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 text-xs sm:text-sm font-semibold text-white transition-all shrink-0">
+              Verify India Delivery
+            </button>
+          </form>
+          <div id="pincodeCheckResult" class="hidden text-xs mb-6 px-3 py-2 rounded-xl border max-w-md"></div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#catalog" class="animate-glow px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-sm sm:text-base transition-all duration-200 flex items-center gap-2">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              Browse Catalog
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 mt-10 pt-6 border-t border-slate-800/80 max-w-lg">
+            <div>
+              <div class="text-xl sm:text-2xl font-extrabold text-white">India Only</div>
+              <div class="text-xs text-slate-400">19,000+ Pincodes</div>
+            </div>
+            <div>
+              <div class="text-xl sm:text-2xl font-extrabold text-emerald-400">BTC / ETH</div>
+              <div class="text-xs text-slate-400">Escrow Crypto Pay</div>
+            </div>
+            <div>
+              <div class="text-xl sm:text-2xl font-extrabold text-cyan-400">24–48h</div>
+              <div class="text-xs text-slate-400">Insured Dispatch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank-Grade Security & Payment Guarantee Strip -->
+    <section class="bg-[#0b111d] border-b border-slate-800/80 py-4">
+      <div class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-300">
+        <div class="flex items-center gap-2">
+          <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+          <span>256-Bit TLS Encrypted Checkout</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
+          <span>Multi-Sig BTC & ETH Escrow Protection</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4 text-orange-400"></i>
+          <span>NPCI UPI & GST-Compliant B2B Billing</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="package" class="w-4 h-4 text-purple-400"></i>
+          <span>Tamper-Evident Insured India Transit</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog & Filters Section -->
+    <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Hardware & Mining Catalog</h2>
+          <p class="text-sm text-slate-400 mt-1">Factory-sealed hardware shipped exclusively within India from authorized local hubs.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+          <div class="relative flex-1 sm:w-64">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="searchInput" placeholder="Search Tangem, Antminer, Ledger..."
+              class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors" />
+          </div>
+          <select id="sortSelect"
+            class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 transition-colors">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="margin-desc">Dropship Margin: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="categoryPills" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6"></div>
+
+      <!-- Dropshipper Banner (Always On) -->
+      <div id="dropshipBanner" class="mb-6 p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-3 animate-fade-up">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+          <i data-lucide="package-check" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-emerald-300">India Dropshipping & Wholesale Margins Always Active</h3>
+          <p class="text-xs text-slate-300">Every SKU displays your wholesale B2B cost, suggested retail price (MRP), net profit per unit, and Indian warehouse dispatch SLA.</p>
+        </div>
+      </div>
+
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+      <div id="emptyState" class="hidden text-center py-16 bg-slate-900/50 rounded-2xl border border-slate-800 animate-fade-up">
+        <i data-lucide="search-x" class="w-10 h-10 text-slate-500 mx-auto mb-3"></i>
+        <h3 class="text-lg font-bold text-white">No matching hardware found</h3>
+        <p class="text-sm text-slate-400 mt-1 mb-4">Try clearing your search or switching back to All Categories.</p>
+        <button type="button" id="resetFiltersBtn" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm active:scale-95 transition-transform">Reset Filters</button>
+      </div>
+    </section>
+
+    <!-- Interactive ASIC Miner ROI & Electricity Calculator -->
+    <section id="roi-calc" class="bg-slate-900/40 border-y border-slate-800/80 py-12 sm:py-16">
+      <div class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold mb-4">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+              India Power Tariff Estimator
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">ASIC Miner Profitability & ROI Calculator</h2>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Select any Bitmain Antminer from our catalog and adjust your local Indian electricity tariff (₹/kWh) to estimate daily power draw, gross mining yield, net monthly cashflow, and hardware payback period.
+            </p>
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs text-slate-300">
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="info" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+                <span>Commercial/Industrial tariffs in Gujarat, Maharashtra, & Tamil Nadu typically range between <strong>₹6.50 – ₹9.00/kWh</strong>.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span>Estimates are illustrative based on reference network difficulty and can vary with pool fees & coin prices.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-[#0f1623] border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl transition-all duration-300 hover:border-slate-700">
+            <div class="flex items-center gap-4 mb-6 p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+              <div class="w-28 sm:w-36 shrink-0 rounded-lg overflow-hidden bg-slate-950">
+                <img id="calcMinerPreview" src="images/products/antminer-s21-200.svg" alt="Selected ASIC miner" width="800" height="600" class="w-full aspect-[4/3] object-cover" />
+              </div>
+              <div class="min-w-0">
+                <div class="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">Selected Rig</div>
+                <div id="calcMinerName" class="text-sm sm:text-base font-bold text-white truncate">Antminer</div>
+                <div id="calcMinerMeta" class="text-xs text-slate-400">--</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label for="calcMinerSelect" class="block text-xs font-semibold text-slate-400 mb-1.5">Select ASIC Miner</label>
+                <select id="calcMinerSelect" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500"></select>
+              </div>
+              <div>
+                <label for="calcTariffInput" class="block text-xs font-semibold text-slate-400 mb-1.5">
+                  Electricity Rate: <span id="calcTariffDisplay" class="text-cyan-400 font-bold">₹7.50 / kWh</span>
+                </label>
+                <input type="range" id="calcTariffInput" min="3.0" max="14.0" step="0.5" value="7.5"
+                  class="w-full accent-cyan-500 mt-2 cursor-pointer" />
+                <div class="flex justify-between text-[11px] text-slate-500 mt-1">
+                  <span>₹3/kWh (Solar)</span>
+                  <span>₹7.5/kWh</span>
+                  <span>₹14/kWh</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label for="calcQtyInput" class="block text-xs font-semibold text-slate-400 mb-1.5">Number of Units</label>
+                <input type="number" id="calcQtyInput" min="1" max="50" value="1"
+                  class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+              </div>
+              <div>
+                <label for="calcUptimeInput" class="block text-xs font-semibold text-slate-400 mb-1.5">Uptime (%)</label>
+                <input type="number" id="calcUptimeInput" min="50" max="100" value="98"
+                  class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+              <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 transition-colors hover:border-slate-700">
+                <div class="text-[11px] text-slate-400">Est. Gross / Mo</div>
+                <div id="calcGrossMonth" class="text-base sm:text-lg font-extrabold text-white mt-0.5">₹0</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 transition-colors hover:border-slate-700">
+                <div class="text-[11px] text-slate-400">Power Cost / Mo</div>
+                <div id="calcPowerMonth" class="text-base sm:text-lg font-extrabold text-rose-400 mt-0.5">₹0</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 transition-colors hover:border-slate-700">
+                <div class="text-[11px] text-slate-400">Net Profit / Mo</div>
+                <div id="calcNetMonth" class="text-base sm:text-lg font-extrabold text-emerald-400 mt-0.5">₹0</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 transition-colors hover:border-slate-700">
+                <div class="text-[11px] text-slate-400">Est. Payback</div>
+                <div id="calcPayback" class="text-base sm:text-lg font-extrabold text-cyan-400 mt-0.5">--</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+              <div class="text-xs text-slate-400">
+                Wholesale Cost: <span id="calcHardwareCost" class="text-white font-semibold">₹0</span> • Power Draw: <span id="calcWatts" class="text-white font-semibold">0 W</span>
+              </div>
+              <button type="button" id="calcAddMinerBtn" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-xs sm:text-sm transition-all">
+                Add Selected Miner to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dropshipping Fulfillment Hub Section -->
+    <section id="dropship-hub" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="reveal text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Built for Indian Crypto Dropshippers</h2>
+        <p class="text-sm text-slate-400 mt-2">Sell Tangem wallets, seed vaults, and ASIC miners across India without holding inventory. All orders are escrow-backed.</p>
+      </div>
+
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="p-6 rounded-2xl bg-[#0f1623] border border-slate-800 hover:border-cyan-500/40 card-hover">
+          <div class="w-11 h-11 rounded-xl bg-cyan-500/15 flex items-center justify-center mb-4">
+            <i data-lucide="truck" class="w-5 h-5 text-cyan-400"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">India-Only White-Label Dispatch</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Tamper-evident, unbranded packaging shipped via BlueDart & Delhivery Air to 19,000+ Indian pincodes with live AWB tracking.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#0f1623] border border-slate-800 hover:border-emerald-500/40 card-hover">
+          <div class="w-11 h-11 rounded-xl bg-emerald-500/15 flex items-center justify-center mb-4">
+            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">BTC / ETH & UPI Escrow Safety</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Pay safely via verified NPCI UPI, NEFT, or Bitcoin (BTC) & Ethereum (ETH) with rate-locked multi-sig escrow protection.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#0f1623] border border-slate-800 hover:border-purple-500/40 card-hover">
+          <div class="w-11 h-11 rounded-xl bg-purple-500/15 flex items-center justify-center mb-4">
+            <i data-lucide="file-spreadsheet" class="w-5 h-5 text-purple-400"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">18% GST Input Tax Credit</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Enter your Indian business GSTIN at checkout to receive automated 18% GST tax invoices and maximize your net margin.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-cyan-950/80 via-slate-900 to-emerald-950/70 border border-cyan-500/25 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-xl font-extrabold text-white">Get Weekly India ASIC Batch Alerts & Dropship Price Sheets</h3>
+          <p class="text-sm text-slate-300 mt-1">Receive Mumbai & Bengaluru stock drops, customs-cleared INR pricing, and new Tangem editions.</p>
+        </div>
+        <form id="newsletterForm" class="flex flex-col sm:flex-row w-full md:w-auto gap-2.5">
+          <input type="email" id="newsletterEmail" required placeholder="you@store.in"
+            class="px-4 py-2.5 rounded-xl bg-slate-950/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 sm:w-64" />
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-sm transition-all shrink-0">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#060910] border-t border-slate-800/80 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-sm">
+        <div>
+          <div class="flex items-center gap-2 font-extrabold text-white text-lg mb-3">
+            <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
+            CryptoDrop India
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            India-exclusive crypto hardware & ASIC mining dropshipping platform. Insured pan-India delivery only (no international shipping).
+          </p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">Categories</h4>
+          <ul class="space-y-2 text-slate-400 text-xs">
+            <li><a href="#catalog" class="hover:text-cyan-400 transition-colors footer-cat-link" data-cat="Hardware Wallets">Tangem & Cold Wallets</a></li>
+            <li><a href="#catalog" class="hover:text-cyan-400 transition-colors footer-cat-link" data-cat="ASIC Miners">Bitmain Antminer S21 / KS3</a></li>
+            <li><a href="#catalog" class="hover:text-cyan-400 transition-colors footer-cat-link" data-cat="Seed & Steel Backups">Titanium Seed Backups</a></li>
+            <li><a href="#catalog" class="hover:text-cyan-400 transition-colors footer-cat-link" data-cat="Mining Accessories">ASIC Fans & Apparel</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">Tools & Support</h4>
+          <ul class="space-y-2 text-slate-400 text-xs">
+            <li><a href="#roi-calc" class="hover:text-cyan-400 transition-colors">ASIC ROI Calculator</a></li>
+            <li><button type="button" id="openTrackerFooterBtn" class="hover:text-cyan-400 transition-colors">Track Order Status</button></li>
+            <li><a href="#dropship-hub" class="hover:text-cyan-400 transition-colors">GST & Reseller Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">Verified Safe Payments</h4>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300">UPI Escrow</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300">NEFT / RTGS</span>
+            <span class="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">Bitcoin (BTC)</span>
+            <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 font-semibold">Ethereum (ETH)</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <span>© 2026 CryptoDrop India. Shipping strictly within India.</span>
+        <span>Prices in INR (₹) • Promo codes: <code class="text-cyan-400">CRYPTO10</code>, <code class="text-cyan-400">MINER5</code></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-over Cart Drawer -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none"></div>
+  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0f1623] border-l border-slate-800 z-50 transform translate-x-full flex flex-col shadow-2xl">
+    <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-cart" class="w-5 h-5 text-cyan-400"></i>
+        <h3 class="text-lg font-bold text-white">Your Cart (<span id="drawerCartCount">0</span>)</h3>
+      </div>
+      <button type="button" id="closeCartBtn" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors" aria-label="Close Cart">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+
+    <div class="p-5 border-t border-slate-800 bg-slate-950/60 space-y-3">
+      <form id="promoForm" class="flex gap-2">
+        <input type="text" id="promoInput" placeholder="Promo code (e.g. CRYPTO10)"
+          class="flex-1 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 uppercase focus:outline-none focus:border-cyan-500" />
+        <button type="submit" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-xs font-semibold text-white transition-all">Apply</button>
+      </form>
+      <div id="promoStatus" class="text-xs hidden"></div>
+
+      <div class="space-y-1.5 text-xs text-slate-300 pt-1">
+        <div class="flex justify-between"><span>Wholesale Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div id="cartDiscountRow" class="hidden flex justify-between text-emerald-400">
+          <span>Discount (<span id="cartPromoName"></span>)</span>
+          <span id="cartDiscountAmount">-₹0</span>
+        </div>
+        <div class="flex justify-between"><span>Insured India Shipping</span><span id="cartShipping">₹0</span></div>
+        <div class="flex justify-between text-slate-400"><span>Included 18% GST</span><span id="cartGst">₹0</span></div>
+        <div class="flex justify-between text-base font-extrabold text-white pt-2 border-t border-slate-800">
+          <span>Total Payable</span>
+          <span id="cartTotal" class="text-cyan-400">₹0</span>
+        </div>
+      </div>
+
+      <button type="button" id="proceedCheckoutBtn"
+        class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-bold text-sm transition-all">
+        Proceed to Safe India Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="modal-shell fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+    <div class="bg-[#0f1623] border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl modal-panel">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between sticky top-0 bg-[#0f1623] z-10">
+        <span id="modalCategoryBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300">Category</span>
+        <button type="button" id="closeProductModalBtn" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="productModalBody" class="p-5 sm:p-6"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal-shell fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+    <div class="bg-[#0f1623] border border-slate-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl modal-panel">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between sticky top-0 bg-[#0f1623] z-10">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+          <h3 class="text-lg font-bold text-white">Escrow-Protected India Checkout</h3>
+        </div>
+        <button type="button" id="closeCheckoutModalBtn" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="checkoutForm" class="p-5 space-y-4">
+        <div class="px-3 py-2 rounded-xl bg-orange-500/10 border border-orange-500/25 text-xs text-orange-200 flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-4 h-4 text-orange-400 shrink-0"></i>
+          <span>Region Locked: <strong>India Only (+91)</strong>. International orders are not supported.</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Full Name / Store Name</label>
+            <input type="text" id="chkName" required placeholder="Aarav Sharma"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Indian Mobile (+91)</label>
+            <input type="tel" id="chkPhone" required pattern="^(\+91[\-\s]?)?[6-9]\d{9}$" placeholder="+91 98765 43210"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Indian Street Address</label>
+          <input type="text" id="chkAddress" required placeholder="Flat 402, RS Puram"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">City</label>
+            <input type="text" id="chkCity" required placeholder="Coimbatore"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">State / UT</label>
+            <select id="chkState" required class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500">
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Delhi">Delhi NCR</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Other India State/UT">Other India State/UT</option>
+            </select>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Indian Pincode</label>
+            <input type="text" id="chkPincode" required pattern="^[1-9][0-9]{5}$" maxlength="6" placeholder="641001"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Country (Locked)</label>
+            <input type="text" value="India (IN)" readonly
+              class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-400 cursor-not-allowed" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">GSTIN (Optional)</label>
+            <input type="text" id="chkGstin" placeholder="33ABCDE1234F1Z5"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white uppercase focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-2">Select Safe Payment Method (Crypto: BTC / ETH Only)</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <label class="cursor-pointer">
+              <input type="radio" name="payMethod" value="UPI Escrow" checked class="peer sr-only pay-radio" />
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-cyan-500 peer-checked:bg-cyan-500/10 text-center text-xs font-semibold text-slate-200 transition-all">
+                UPI Escrow
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="payMethod" value="NEFT / RTGS" class="peer sr-only pay-radio" />
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-cyan-500 peer-checked:bg-cyan-500/10 text-center text-xs font-semibold text-slate-200 transition-all">
+                NEFT / RTGS
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="payMethod" value="BTC" class="peer sr-only pay-radio" />
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-amber-400 peer-checked:bg-amber-500/15 text-center text-xs font-bold text-amber-300 transition-all">
+                Bitcoin (BTC)
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="payMethod" value="ETH" class="peer sr-only pay-radio" />
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-indigo-400 peer-checked:bg-indigo-500/15 text-center text-xs font-bold text-indigo-300 transition-all">
+                Ethereum (ETH)
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- BTC / ETH Escrow Payment Panel -->
+        <div id="cryptoEscrowPanel" class="hidden p-4 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-3 animate-fade-up">
+          <div class="flex items-center justify-between">
+            <span id="cryptoCoinTitle" class="text-xs font-bold text-amber-300 uppercase tracking-wider">Bitcoin (BTC) Multi-Sig Escrow</span>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300">Rate Lock: <span id="cryptoTimer">15:00</span></span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div id="cryptoQrBox" class="w-16 h-16 rounded-lg bg-white p-1 shrink-0 flex items-center justify-center"></div>
+            <div class="min-w-0 flex-1 space-y-1">
+              <div class="text-xs text-slate-400">Exact Amount Due: <strong id="cryptoExactAmount" class="text-white font-mono text-sm">0.000000 BTC</strong></div>
+              <div class="flex items-center gap-1.5">
+                <code id="cryptoWalletAddr" class="text-[11px] font-mono text-cyan-300 bg-slate-900 px-2 py-1 rounded border border-slate-800 truncate block flex-1"></code>
+                <button type="button" id="copyCryptoAddrBtn" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-white shrink-0">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] text-slate-400 mb-1">Transaction Hash / TxID (Optional for instant escrow match)</label>
+            <input type="text" id="cryptoTxId" placeholder="0x... or BTC TxID"
+              class="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-sm">
+          <span class="text-slate-400">Order Total (incl. 18% GST)</span>
+          <span id="checkoutTotalDisplay" class="font-extrabold text-cyan-400 text-base">₹0</span>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-bold text-sm transition-all">
+          Confirm Secure Order
+        </button>
+      </form>
+
+      <div id="checkoutSuccess" class="hidden p-6 text-center space-y-4 animate-fade-up">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+          <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+        </div>
+        <h4 class="text-xl font-extrabold text-white">Escrow Order Confirmed!</h4>
+        <p class="text-sm text-slate-300">Your India order <span id="confirmedOrderId" class="font-mono font-bold text-cyan-400"></span> has been queued for dispatch.</p>
+        <div id="confirmedSummary" class="text-xs text-slate-400 bg-slate-900 p-3 rounded-xl border border-slate-800 text-left"></div>
+        <button type="button" id="doneCheckoutBtn" class="w-full py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm active:scale-95 transition-transform">Back to Store</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Tracker Modal -->
+  <div id="trackerModal" class="modal-shell fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+    <div class="bg-[#0f1623] border border-slate-800 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 modal-panel">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-white">Track India Order</h3>
+        <button type="button" id="closeTrackerBtn" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="trackerForm" class="flex gap-2">
+        <input type="text" id="trackerInput" placeholder="Enter Order ID (e.g. CD-IN-8842)"
+          class="flex-1 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white uppercase focus:outline-none focus:border-cyan-500" />
+        <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm active:scale-95 transition-transform">Track</button>
+      </form>
+      <div id="trackerResult" class="text-xs text-slate-300 bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        Try sample Order ID <button type="button" id="useSampleOrderBtn" class="text-cyan-400 font-mono underline">CD-IN-8842</button> or any order placed in this session.
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-[60] flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 border border-cyan-500/40 text-sm text-white shadow-2xl" role="status" aria-live="polite">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+    <span id="toastMessage">Added to cart</span>
+  </div>
+
+  <script>
+    const CRYPTO_RATES = {
+      BTC: { rateInr: 7850000, addr: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh', net: 'Bitcoin Mainnet (SegWit)' },
+      ETH: { rateInr: 275000, addr: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F', net: 'Ethereum Mainnet (ERC-20)' }
+    };
+
+    const PRODUCTS = [
+      {
+        id: 'tangem-3pack',
+        name: 'Tangem Wallet 2.0 (3-Card Set)',
+        brand: 'Tangem',
+        category: 'Hardware Wallets',
+        price: 6899,
+        wholesale: 5100,
+        badge: 'Best Seller',
+        dispatch: '24h Mumbai Hub',
+        image: 'images/products/tangem-3pack.svg',
+        shortDesc: 'CC EAL6+ certified NFC cold wallet. 6,000+ coins, IP68 waterproof, 25-year warranty.',
+        specs: { 'Security Chip': 'Samsung S3D350A (EAL6+)', 'Connectivity': 'NFC (iOS & Android)', 'Backup': '3-Card Smart Backup / BIP39', 'Warranty': '25 Years Replacement' }
+      },
+      {
+        id: 'tangem-ring',
+        name: 'Tangem Ring + 2 Backup Cards',
+        brand: 'Tangem',
+        category: 'Hardware Wallets',
+        price: 13999,
+        wholesale: 10800,
+        badge: 'New Arrival',
+        dispatch: '24h Bengaluru Hub',
+        image: 'images/products/tangem-ring.svg',
+        shortDesc: 'Wearable zirconia ceramic NFC hardware wallet paired with 2 backup cards.',
+        specs: { 'Material': 'Hypoallergenic Zirconia Ceramic', 'Security': 'CC EAL6+ Certified', 'Waterproof': 'IP68 (50m)', 'Supported Chains': '61+ Networks, 6,000+ Tokens' }
+      },
+      {
+        id: 'antminer-s21-200',
+        name: 'Bitmain Antminer S21 (200 TH/s)',
+        brand: 'Bitmain',
+        category: 'ASIC Miners',
+        price: 155000,
+        wholesale: 132000,
+        badge: 'High ROI',
+        dispatch: '48h Mumbai Customs',
+        image: 'images/products/antminer-s21-200.svg',
+        shortDesc: 'Next-gen SHA-256 Bitcoin miner delivering 200 TH/s at 17.5 J/TH efficiency.',
+        minerStats: { algo: 'SHA-256 (BTC)', hashrate: '200 TH/s', watts: 3500, grossDailyInr: 1480 },
+        specs: { 'Algorithm': 'SHA-256 (BTC / BCH / BSV)', 'Hashrate': '200 TH/s ±3%', 'Power Draw': '3,500 W (17.5 J/TH)', 'Noise Level': '75 dB (Dual Fan)' }
+      },
+      {
+        id: 'antminer-s21-hydro',
+        name: 'Bitmain Antminer S21+ Hydro (358 TH/s)',
+        brand: 'Bitmain',
+        category: 'ASIC Miners',
+        price: 340000,
+        wholesale: 298000,
+        badge: 'Industrial',
+        dispatch: '72h Bonded India',
+        image: 'images/products/antminer-s21-hydro.svg',
+        shortDesc: 'Liquid-cooled industrial SHA-256 powerhouse engineered for silent farm deployments.',
+        minerStats: { algo: 'SHA-256 (BTC)', hashrate: '358 TH/s', watts: 5370, grossDailyInr: 2650 },
+        specs: { 'Algorithm': 'SHA-256', 'Hashrate': '358 TH/s', 'Power Draw': '5,370 W (15.0 J/TH)', 'Cooling': 'Hydro / Liquid Loop' }
+      },
+      {
+        id: 'antminer-s19k-pro',
+        name: 'Bitmain Antminer S19K Pro (120 TH/s)',
+        brand: 'Bitmain',
+        category: 'ASIC Miners',
+        price: 82000,
+        wholesale: 68500,
+        badge: 'Entry Miner',
+        dispatch: '24h Mumbai Hub',
+        image: 'images/products/antminer-s19k-pro.svg',
+        shortDesc: 'Reliable, budget-friendly SHA-256 Bitcoin miner with 23 J/TH efficiency.',
+        minerStats: { algo: 'SHA-256 (BTC)', hashrate: '120 TH/s', watts: 2760, grossDailyInr: 890 },
+        specs: { 'Algorithm': 'SHA-256', 'Hashrate': '120 TH/s', 'Power Draw': '2,760 W (23 J/TH)', 'Voltage': '220V–277V AC' }
+      },
+      {
+        id: 'antminer-ks3',
+        name: 'Bitmain Antminer KS3 (9.4 TH/s)',
+        brand: 'Bitmain',
+        category: 'ASIC Miners',
+        price: 100000,
+        wholesale: 84000,
+        badge: 'Kaspa',
+        dispatch: '48h Delhi NCR Hub',
+        image: 'images/products/antminer-ks3.svg',
+        shortDesc: 'Dedicated kHeavyHash ASIC miner built for high-throughput Kaspa (KAS) mining.',
+        minerStats: { algo: 'kHeavyHash (KAS)', hashrate: '9.4 TH/s', watts: 3500, grossDailyInr: 1320 },
+        specs: { 'Algorithm': 'kHeavyHash (Kaspa)', 'Hashrate': '9.4 TH/s', 'Power Draw': '3,500 W', 'Weight': '16.1 kg' }
+      },
+      {
+        id: 'ledger-nano-x',
+        name: 'Ledger Nano X (Onyx Black)',
+        brand: 'Ledger',
+        category: 'Hardware Wallets',
+        price: 12999,
+        wholesale: 10200,
+        badge: 'Bluetooth',
+        dispatch: '24h Mumbai Hub',
+        image: 'images/products/ledger-nano-x.svg',
+        shortDesc: 'Wireless Bluetooth + USB-C cold storage with CC EAL5+ Secure Element.',
+        specs: { 'Security Chip': 'ST33J2M0 (CC EAL5+)', 'Connectivity': 'Bluetooth 5.0 & USB-C', 'Apps Capacity': 'Up to 100 Coin Apps', 'Battery': '100 mAh' }
+      },
+      {
+        id: 'trezor-safe-5',
+        name: 'Trezor Safe 5 (Touchscreen)',
+        brand: 'Trezor',
+        category: 'Hardware Wallets',
+        price: 18999,
+        wholesale: 15100,
+        badge: 'Open Source',
+        dispatch: '24h Bengaluru Hub',
+        image: 'images/products/trezor-safe-5.svg',
+        shortDesc: 'Color haptic touchscreen with NDA-free EAL6+ Secure Element & MicroSD.',
+        specs: { 'Security': 'OPTIGA Trust M (EAL6+)', 'Display': '1.54" Color Gorilla Glass', 'Backup': '20-word Shamir / SLIP39', 'Firmware': '100% Open Source' }
+      },
+      {
+        id: 'ledger-stax',
+        name: 'Ledger Stax E-Ink Curved',
+        brand: 'Ledger',
+        category: 'Hardware Wallets',
+        price: 49999,
+        wholesale: 42500,
+        badge: 'Flagship',
+        dispatch: '48h Mumbai Hub',
+        image: 'images/products/ledger-stax.svg',
+        shortDesc: 'Curved E-Ink touchscreen designed by Tony Fadell with Qi wireless charging.',
+        specs: { 'Display': '3.7" Curved E-Ink Touch', 'Charging': 'USB-C & Qi Wireless', 'Connectivity': 'Bluetooth 5.2 & NFC', 'Security': 'CC EAL6+ Secure Element' }
+      },
+      {
+        id: 'titanium-seed-plate',
+        name: 'CryptoSteel Titanium Seed Vault',
+        brand: 'CryptoSteel',
+        category: 'Seed & Steel Backups',
+        price: 3499,
+        wholesale: 1850,
+        badge: '47% Margin',
+        dispatch: '24h Pan-India',
+        image: 'images/products/titanium-seed-plate.svg',
+        shortDesc: 'Grade-5 Titanium 24-word BIP39 seed backup plate, fireproof up to 1,660°C.',
+        specs: { 'Material': 'Grade-5 Aerospace Titanium', 'Fire Rating': 'Up to 1,660°C', 'Compatibility': '12 or 24-word BIP39', 'Tamper Seal': 'Included Security Stickers' }
+      },
+      {
+        id: 'asic-cooling-kit',
+        name: 'Nidec 4-Pin ASIC Fan & Shroud Kit',
+        brand: 'Nidec',
+        category: 'Mining Accessories',
+        price: 2499,
+        wholesale: 1300,
+        badge: '48% Margin',
+        dispatch: '24h Pan-India',
+        image: 'images/products/asic-cooling-kit.svg',
+        shortDesc: 'Dual 120mm 6000 RPM high-CFM replacement cooling fans + 6" acoustic duct shroud.',
+        specs: { 'Fan Speed': '6,000 RPM PWM', 'Connector': '4-Pin Antminer Standard', 'Airflow': '210 CFM', 'Compatibility': 'S19 / S21 / KS3 Series' }
+      },
+      {
+        id: 'lunar-miner-tee',
+        name: 'Lunar Moon Miner Heavyweight Tee',
+        brand: 'CryptoDrop',
+        category: 'Crypto Apparel',
+        price: 1299,
+        wholesale: 580,
+        badge: '55% Margin',
+        dispatch: '24h Tiruppur Hub',
+        image: 'images/products/lunar-miner-tee.svg',
+        shortDesc: '240 GSM combed cotton oversized tee with glowing Bitcoin circuit schematic print.',
+        specs: { 'Fabric': '240 GSM French Terry Cotton', 'Fit': 'Oversized Drop-Shoulder', 'Print': 'High-Density Puff Print', 'Sizes': 'S / M / L / XL / XXL' }
+      }
+    ];
+
+    const CATEGORIES = ['All', 'Hardware Wallets', 'ASIC Miners', 'Seed & Steel Backups', 'Mining Accessories', 'Crypto Apparel'];
+
+    const SAMPLE_ORDERS = {
+      'CD-IN-8842': {
+        id: 'CD-IN-8842',
+        status: 'In Transit — BlueDart Air (India)',
+        city: 'Coimbatore, Tamil Nadu',
+        items: 'Tangem Wallet 2.0 (3-Card Set) x1, CryptoSteel Titanium Seed Vault x1',
+        total: '₹10,398 (UPI Escrow)',
+        eta: 'Expected Delivery: Tomorrow by 7:00 PM'
+      }
+    };
+
+    const state = {
+      category: 'All',
+      search: '',
+      sort: 'featured',
+      dropshipMode: true,
+      cart: {},
+      promo: null,
+      orders: { ...SAMPLE_ORDERS }
+    };
+
+    try {
+      const saved = localStorage.getItem('cryptodrop_cart_v1');
+      if (saved) state.cart = JSON.parse(saved) || {};
+    } catch (e) {}
+
+    function saveCart() {
+      try {
+        localStorage.setItem('cryptodrop_cart_v1', JSON.stringify(state.cart));
+      } catch (e) {}
+    }
+
+    function formatINR(num) {
+      return '₹' + Math.round(num).toLocaleString('en-IN');
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('show');
+      void toast.offsetWidth;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    // ---------- Modal open/close with exit transitions ----------
+    const modalTimers = new WeakMap();
+    function showModal(el, instant = false) {
+      clearTimeout(modalTimers.get(el));
+      el.classList.toggle('instant', instant);
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+      if (!instant) void el.offsetWidth;
+      el.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function hideModal(el, instant = false) {
+      el.classList.toggle('instant', instant);
+      el.classList.remove('is-open');
+      const finish = () => {
+        el.classList.add('hidden');
+        el.classList.remove('flex', 'instant');
+        if (!document.querySelector('.modal-shell.is-open') && !cartIsOpen) document.body.style.overflow = '';
+      };
+      if (instant || prefersReducedMotion) finish();
+      else modalTimers.set(el, setTimeout(finish, 320));
+    }
+
+    // ---------- Scroll reveal ----------
+    const revealObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+      : null;
+    function observeReveal(el) {
+      if (revealObserver && !prefersReducedMotion) revealObserver.observe(el);
+      else el.classList.add('in-view');
+    }
+
+    // ---------- Fly-to-cart ----------
+    function bumpCartBadge() {
+      const badge = document.getElementById('cartCountBadge');
+      badge.classList.remove('bump');
+      void badge.offsetWidth;
+      badge.classList.add('bump');
+    }
+    function flyToCart(sourceImg) {
+      const target = document.getElementById('openCartBtn');
+      if (!sourceImg || prefersReducedMotion || !target.animate) { bumpCartBadge(); return; }
+      const from = sourceImg.getBoundingClientRect();
+      const to = target.getBoundingClientRect();
+      if (from.width === 0) { bumpCartBadge(); return; }
+      const clone = document.createElement('img');
+      clone.src = sourceImg.currentSrc || sourceImg.src;
+      clone.className = 'fly-img';
+      Object.assign(clone.style, { left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px' });
+      document.body.appendChild(clone);
+      const dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+      const dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+      const scale = Math.max(0.08, 36 / from.width);
+      clone.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${dx * 0.35}px, ${dy * 0.35 - 60}px) scale(0.6)`, opacity: 0.95, offset: 0.45 },
+        { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 0.2 }
+      ], { duration: 750, easing: 'cubic-bezier(0.5, 0, 0.2, 1)' }).onfinish = () => {
+        clone.remove();
+        bumpCartBadge();
+      };
+    }
+
+    function imgLoaded(img) {
+      img.classList.add('loaded');
+      const sk = img.closest('.img-skeleton');
+      if (sk) sk.classList.add('is-loaded');
+    }
+
+    function copyTextSafe(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(successMsg)).catch(() => fallbackCopy(text, successMsg));
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast(successMsg); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    function pillClass(active) {
+      return `cat-pill shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 active:scale-95 border ${
+        active
+          ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-lg shadow-cyan-500/20'
+          : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-600'
+      }`;
+    }
+
+    function renderCategories() {
+      const wrap = document.getElementById('categoryPills');
+      if (wrap.children.length) {
+        wrap.querySelectorAll('.cat-pill').forEach(btn => { btn.className = pillClass(state.category === btn.dataset.cat); });
+        return;
+      }
+      wrap.innerHTML = CATEGORIES.map(cat =>
+        `<button type="button" data-cat="${cat}" class="${pillClass(state.category === cat)}">${cat}</button>`
+      ).join('');
+
+      wrap.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (state.category === btn.dataset.cat) return;
+          state.category = btn.dataset.cat;
+          renderCategories();
+          renderProductsAnimated();
+        });
+      });
+    }
+
+    function getFilteredProducts() {
+      let list = PRODUCTS.filter(p => {
+        const matchCat = state.category === 'All' || p.category === state.category;
+        const q = state.search.trim().toLowerCase();
+        const matchSearch = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+        return matchCat && matchSearch;
+      });
+
+      if (state.sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+      else if (state.sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+      else if (state.sort === 'margin-desc') list.sort((a, b) => ((b.price - b.wholesale) / b.price) - ((a.price - a.wholesale) / a.price));
+      return list;
+    }
+
+    let gridSwapTimer = null;
+    function renderProductsAnimated() {
+      const grid = document.getElementById('productGrid');
+      if (prefersReducedMotion || !grid.children.length) { renderProducts(); return; }
+      clearTimeout(gridSwapTimer);
+      grid.classList.add('grid-leaving');
+      gridSwapTimer = setTimeout(() => {
+        renderProducts();
+        grid.classList.remove('grid-leaving');
+      }, 180);
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const empty = document.getElementById('emptyState');
+      const list = getFilteredProducts();
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      grid.innerHTML = list.map((p, idx) => {
+        const marginRs = p.price - p.wholesale;
+        const marginPct = Math.round((marginRs / p.price) * 100);
+        const delay = (idx % 4) * 80;
+        return `
+          <article style="--d: ${delay}ms" class="product-card card-hover group bg-[#0f1623] border border-slate-800 hover:border-cyan-500/50 rounded-2xl overflow-hidden flex flex-col shadow-lg">
+            <div class="card-media img-skeleton relative aspect-[4/3] bg-slate-950 overflow-hidden cursor-pointer product-open-trigger" data-id="${p.id}">
+              <img src="${p.image}" alt="${p.name}" width="800" height="600" loading="lazy" decoding="async" onload="imgLoaded(this)" class="product-img fade-img w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950/85 text-cyan-300 border border-cyan-500/30">${p.badge}</span>
+              <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-950/85 text-slate-300 border border-slate-700">${p.dispatch}</span>
+            </div>
+
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-cyan-400 mb-1">${p.brand} • ${p.category}</div>
+              <h3 class="text-base font-bold text-white leading-snug mb-1.5 cursor-pointer hover:text-cyan-300 transition-colors product-open-trigger" data-id="${p.id}">${p.name}</h3>
+              <p class="text-xs text-slate-400 line-clamp-2 mb-4 flex-1">${p.shortDesc}</p>
+
+              <div class="mb-3 p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs space-y-1">
+                <div class="flex justify-between text-slate-300">
+                  <span>Wholesale Cost:</span>
+                  <span class="font-bold text-white">${formatINR(p.wholesale)}</span>
+                </div>
+                <div class="flex justify-between text-emerald-400 font-bold">
+                  <span>Net Profit (${marginPct}%):</span>
+                  <span>+${formatINR(marginRs)}</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
+                <div>
+                  <div class="text-lg font-extrabold text-white">${formatINR(p.price)}</div>
+                  <div class="text-[10px] text-slate-500">MRP (Incl. 18% GST)</div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" class="copy-sku-btn px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-xs font-semibold text-slate-200 transition-all" data-id="${p.id}" title="Copy listing details">
+                    Copy SKU
+                  </button>
+                  <button type="button" class="add-cart-btn px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-xs transition-all flex items-center gap-1.5" data-id="${p.id}">
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const img = btn.closest('article').querySelector('.product-img');
+          addToCart(btn.dataset.id, 1, img);
+        });
+      });
+      grid.querySelectorAll('.product-open-trigger').forEach(el => {
+        el.addEventListener('click', () => openProductModal(el.dataset.id, el.closest('article').querySelector('.product-img')));
+      });
+      grid.querySelectorAll('.product-card').forEach(observeReveal);
+      grid.querySelectorAll('.product-img').forEach(img => { if (img.complete && img.naturalWidth) imgLoaded(img); });
+      grid.querySelectorAll('.copy-sku-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = PRODUCTS.find(x => x.id === btn.dataset.id);
+          if (p) copyTextSafe(`${p.name} | SKU: ${p.id.toUpperCase()} | MRP: ${formatINR(p.price)} | Wholesale: ${formatINR(p.wholesale)} | India Hub: ${p.dispatch}`, 'Copied dropship SKU to clipboard');
+        });
+      });
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function addToCart(id, qty, sourceImg) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      state.cart[id] = (state.cart[id] || 0) + qty;
+      saveCart();
+      renderCart();
+      flyToCart(sourceImg);
+      showToast(`Added ${p.name} to cart`);
+    }
+
+    function updateCartQty(id, delta) {
+      const next = (state.cart[id] || 0) + delta;
+      if (next <= 0) delete state.cart[id];
+      else state.cart[id] = next;
+      saveCart();
+      renderCart();
+    }
+
+    function getCartTotals() {
+      let count = 0;
+      let subtotal = 0;
+      Object.entries(state.cart).forEach(([id, qty]) => {
+        const p = PRODUCTS.find(x => x.id === id);
+        if (p) {
+          count += qty;
+          subtotal += p.wholesale * qty;
+        }
+      });
+
+      let discount = 0;
+      if (state.promo === 'CRYPTO10') discount = subtotal * 0.10;
+      else if (state.promo === 'MINER5') discount = subtotal * 0.05;
+
+      const afterDiscount = Math.max(0, subtotal - discount);
+      const shipping = afterDiscount === 0 ? 0 : (afterDiscount >= 10000 ? 0 : 299);
+      const total = afterDiscount + shipping;
+      const gst = total - (total / 1.18);
+
+      return { count, subtotal, discount, shipping, total, gst };
+    }
+
+    let cartIsOpen = false;
+    let cartRenderedOnce = false;
+    let prevCartIds = new Set();
+
+    function renderCart() {
+      const totals = getCartTotals();
+      document.getElementById('cartCountBadge').textContent = totals.count;
+      document.getElementById('drawerCartCount').textContent = totals.count;
+      document.getElementById('cartSubtotal').textContent = formatINR(totals.subtotal);
+      document.getElementById('cartShipping').textContent = totals.shipping === 0 && totals.count > 0 ? 'FREE' : formatINR(totals.shipping);
+      document.getElementById('cartGst').textContent = formatINR(totals.gst);
+      document.getElementById('cartTotal').textContent = formatINR(totals.total);
+      document.getElementById('checkoutTotalDisplay').textContent = formatINR(totals.total);
+
+      const discRow = document.getElementById('cartDiscountRow');
+      if (totals.discount > 0) {
+        discRow.classList.remove('hidden');
+        document.getElementById('cartPromoName').textContent = state.promo;
+        document.getElementById('cartDiscountAmount').textContent = '-' + formatINR(totals.discount);
+      } else {
+        discRow.classList.add('hidden');
+      }
+
+      document.getElementById('proceedCheckoutBtn').disabled = totals.count === 0;
+
+      const container = document.getElementById('cartItemsContainer');
+      if (totals.count === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <i data-lucide="shopping-bag" class="w-10 h-10 mx-auto mb-3 text-slate-600"></i>
+            <p class="text-sm font-semibold text-slate-300">Your cart is empty</p>
+            <p class="text-xs mt-1">Add a Tangem wallet or Antminer to get started.</p>
+          </div>
+        `;
+      } else {
+        const animateItems = !cartRenderedOnce || cartIsOpen === 'opening';
+        container.innerHTML = Object.entries(state.cart).map(([id, qty], i) => {
+          const p = PRODUCTS.find(x => x.id === id);
+          if (!p) return '';
+          const isNew = !prevCartIds.has(id);
+          const anim = (animateItems || isNew) ? `cart-item` : 'cart-item-static';
+          return `
+            <div style="animation-delay: ${animateItems ? i * 60 : 0}ms" class="${anim} cart-row flex gap-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800 transition-all hover:border-slate-700 overflow-hidden">
+              <img src="${p.image}" alt="${p.name}" width="800" height="600" class="w-20 h-16 rounded-lg object-cover shrink-0 bg-slate-950" />
+              <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-white truncate">${p.name}</h4>
+                <div class="text-xs text-cyan-400 font-semibold mt-0.5">${formatINR(p.wholesale)} (Wholesale)</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="inline-flex items-center rounded-lg bg-slate-950 border border-slate-800">
+                    <button type="button" class="qty-btn px-2 py-1 text-xs text-slate-300 hover:text-white" data-id="${p.id}" data-delta="-1">-</button>
+                    <span class="px-2 text-xs font-bold text-white">${qty}</span>
+                    <button type="button" class="qty-btn px-2 py-1 text-xs text-slate-300 hover:text-white" data-id="${p.id}" data-delta="1">+</button>
+                  </div>
+                  <button type="button" class="remove-item-btn text-xs text-rose-400 hover:text-rose-300" data-id="${p.id}">Remove</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.querySelectorAll('.qty-btn').forEach(btn => {
+          btn.addEventListener('click', () => updateCartQty(btn.dataset.id, parseInt(btn.dataset.delta, 10)));
+        });
+        container.querySelectorAll('.remove-item-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const row = btn.closest('.cart-item');
+            if (prefersReducedMotion || !row) { updateCartQty(btn.dataset.id, -9999); return; }
+            row.style.height = row.offsetHeight + 'px';
+            row.classList.add('removing');
+            setTimeout(() => updateCartQty(btn.dataset.id, -9999), 280);
+          });
+        });
+      }
+
+      prevCartIds = new Set(Object.keys(state.cart));
+      cartRenderedOnce = true;
+      updateCryptoPanel();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openCart() {
+      const overlay = document.getElementById('cartOverlay');
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('cartDrawer').classList.remove('translate-x-full');
+      // replay the staggered entrance of cart items
+      document.querySelectorAll('#cartItemsContainer .cart-row').forEach((row, i) => {
+        row.classList.remove('cart-item', 'cart-item-static');
+        void row.offsetWidth;
+        row.style.animationDelay = (120 + i * 60) + 'ms';
+        row.classList.add('cart-item');
+      });
+      cartIsOpen = true;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cartOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('cartDrawer').classList.add('translate-x-full');
+      cartIsOpen = false;
+      if (!document.querySelector('.modal-shell.is-open')) document.body.style.overflow = '';
+    }
+
+    let modalSourceImg = null;
+
+    function openProductModal(id, sourceImg) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const modal = document.getElementById('productModal');
+      const canMorph = !!(document.startViewTransition && sourceImg && !prefersReducedMotion && sourceImg.getBoundingClientRect().width > 0);
+      modalSourceImg = sourceImg || null;
+
+      const render = () => {
+        buildProductModal(p);
+        const heroImg = document.getElementById('modalHeroImg');
+        if (canMorph) {
+          sourceImg.style.viewTransitionName = '';
+          heroImg.style.viewTransitionName = 'product-hero';
+        }
+        showModal(modal, canMorph);
+      };
+
+      if (canMorph) {
+        sourceImg.style.viewTransitionName = 'product-hero';
+        const vt = document.startViewTransition(render);
+        vt.finished.finally(() => {
+          const heroImg = document.getElementById('modalHeroImg');
+          if (heroImg) heroImg.style.viewTransitionName = '';
+          modal.classList.remove('instant');
+        });
+      } else {
+        render();
+      }
+    }
+
+    function buildProductModal(p) {
+      document.getElementById('modalCategoryBadge').textContent = p.category;
+      const marginRs = p.price - p.wholesale;
+      const specRows = Object.entries(p.specs).map(([k, v]) =>
+        `<div class="flex justify-between py-2 border-b border-slate-800/80 text-xs">
+          <span class="text-slate-400">${k}</span>
+          <span class="text-white font-semibold text-right">${v}</span>
+        </div>`
+      ).join('');
+
+      const related = PRODUCTS.filter(x => x.category === p.category && x.id !== p.id).slice(0, 3);
+      const relatedHtml = related.length ? `
+        <div class="mt-6 pt-5 border-t border-slate-800">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">More in ${p.category}</div>
+          <div class="grid grid-cols-3 gap-3 stagger">
+            ${related.map(r => `
+              <button type="button" class="related-btn group text-left rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 bg-slate-950 transition-colors" data-id="${r.id}">
+                <div class="overflow-hidden"><img src="${r.image}" alt="${r.name}" width="800" height="600" class="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110" /></div>
+                <div class="px-2 py-1.5 text-[11px] font-semibold text-slate-300 truncate">${r.name}</div>
+              </button>`).join('')}
+          </div>
+        </div>` : '';
+
+      document.getElementById('productModalBody').innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <div id="modalZoom" class="zoom-frame relative rounded-xl border border-slate-800 bg-slate-950 cursor-zoom-in">
+              <img id="modalHeroImg" src="${p.image}" alt="${p.name}" width="800" height="600" class="w-full aspect-[4/3] object-cover" />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950/85 text-cyan-300 border border-cyan-500/30">${p.badge}</span>
+            </div>
+            <p class="mt-2 text-[11px] text-slate-500 text-center">Hover to zoom</p>
+          </div>
+          <div class="stagger">
+            <div class="text-xs font-semibold text-cyan-400 uppercase">${p.brand} • ${p.dispatch}</div>
+            <h3 class="text-xl font-extrabold text-white mt-1 mb-2">${p.name}</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">${p.shortDesc}</p>
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="text-2xl font-extrabold text-white">${formatINR(p.wholesale)}</span>
+              <span class="text-xs text-emerald-400 font-semibold">Profit: +${formatINR(marginRs)} (MRP ${formatINR(p.price)})</span>
+            </div>
+            <div class="mb-5">${specRows}</div>
+            <button type="button" id="modalAddCartBtn" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold text-sm transition-all">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        ${relatedHtml}
+      `;
+
+      document.getElementById('modalAddCartBtn').addEventListener('click', () => {
+        const img = document.getElementById('modalHeroImg');
+        addToCart(p.id, 1, img);
+        setTimeout(() => {
+          closeProductModal(false);
+          openCart();
+        }, prefersReducedMotion ? 0 : 450);
+      });
+
+      const zoom = document.getElementById('modalZoom');
+      zoom.addEventListener('mousemove', e => {
+        const r = zoom.getBoundingClientRect();
+        zoom.style.setProperty('--zx', ((e.clientX - r.left) / r.width * 100) + '%');
+        zoom.style.setProperty('--zy', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+
+      document.querySelectorAll('#productModalBody .related-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const body = document.getElementById('productModalBody');
+          const next = PRODUCTS.find(x => x.id === btn.dataset.id);
+          if (!next) return;
+          modalSourceImg = document.querySelector(`#productGrid .product-card [data-id="${next.id}"] .product-img`);
+          const swap = () => {
+            buildProductModal(next);
+            body.closest('.modal-panel').scrollTo({ top: 0, behavior: 'smooth' });
+          };
+          if (document.startViewTransition && !prefersReducedMotion) document.startViewTransition(swap);
+          else swap();
+        });
+      });
+    }
+
+    function closeProductModal(morph = true) {
+      const modal = document.getElementById('productModal');
+      if (!modal.classList.contains('is-open')) return;
+      const heroImg = document.getElementById('modalHeroImg');
+      const target = modalSourceImg;
+      const canMorph = morph && !!(document.startViewTransition && heroImg && target && target.isConnected && !prefersReducedMotion);
+      if (canMorph) {
+        const r = target.getBoundingClientRect();
+        const visible = r.width > 0 && r.bottom > 0 && r.top < window.innerHeight;
+        if (visible) {
+          heroImg.style.viewTransitionName = 'product-hero';
+          const vt = document.startViewTransition(() => {
+            heroImg.style.viewTransitionName = '';
+            target.style.viewTransitionName = 'product-hero';
+            hideModal(modal, true);
+          });
+          vt.finished.finally(() => { target.style.viewTransitionName = ''; });
+          modalSourceImg = null;
+          return;
+        }
+      }
+      modalSourceImg = null;
+      hideModal(modal);
+    }
+
+    let cryptoCountdownInterval = null;
+    function startCryptoTimer() {
+      clearInterval(cryptoCountdownInterval);
+      let secs = 15 * 60;
+      const el = document.getElementById('cryptoTimer');
+      cryptoCountdownInterval = setInterval(() => {
+        secs = Math.max(0, secs - 1);
+        const m = String(Math.floor(secs / 60)).padStart(2, '0');
+        const s = String(secs % 60).padStart(2, '0');
+        el.textContent = `${m}:${s}`;
+        if (secs === 0) clearInterval(cryptoCountdownInterval);
+      }, 1000);
+    }
+
+    function updateCryptoPanel() {
+      const checked = document.querySelector('input[name="payMethod"]:checked');
+      const panel = document.getElementById('cryptoEscrowPanel');
+      if (!checked || (checked.value !== 'BTC' && checked.value !== 'ETH')) {
+        panel.classList.add('hidden');
+        clearInterval(cryptoCountdownInterval);
+        return;
+      }
+
+      const coin = checked.value;
+      const info = CRYPTO_RATES[coin];
+      const totals = getCartTotals();
+      const amount = (totals.total / info.rateInr).toFixed(6);
+
+      document.getElementById('cryptoCoinTitle').textContent = `${info.net} Escrow`;
+      document.getElementById('cryptoCoinTitle').className = `text-xs font-bold uppercase tracking-wider ${coin === 'BTC' ? 'text-amber-300' : 'text-indigo-300'}`;
+      document.getElementById('cryptoExactAmount').textContent = `${amount} ${coin}`;
+      document.getElementById('cryptoWalletAddr').textContent = info.addr;
+
+      const qrColor = coin === 'BTC' ? '#d97706' : '#4f46e5';
+      document.getElementById('cryptoQrBox').innerHTML = `
+        <svg viewBox="0 0 40 40" class="w-full h-full">
+          <rect width="40" height="40" fill="#ffffff"/>
+          <rect x="3" y="3" width="11" height="11" fill="none" stroke="${qrColor}" stroke-width="2.5"/>
+          <rect x="6" y="6" width="5" height="5" fill="${qrColor}"/>
+          <rect x="26" y="3" width="11" height="11" fill="none" stroke="${qrColor}" stroke-width="2.5"/>
+          <rect x="29" y="6" width="5" height="5" fill="${qrColor}"/>
+          <rect x="3" y="26" width="11" height="11" fill="none" stroke="${qrColor}" stroke-width="2.5"/>
+          <rect x="6" y="29" width="5" height="5" fill="${qrColor}"/>
+          <rect x="17" y="5" width="6" height="6" fill="#0f172a"/>
+          <rect x="17" y="17" width="6" height="6" fill="${qrColor}"/>
+          <rect x="26" y="18" width="10" height="5" fill="#0f172a"/>
+          <rect x="18" y="28" width="7" height="9" fill="#0f172a"/>
+          <rect x="28" y="28" width="9" height="9" fill="${qrColor}"/>
+        </svg>
+      `;
+
+      panel.classList.remove('hidden');
+      startCryptoTimer();
+    }
+
+    function initRoiCalculator() {
+      const miners = PRODUCTS.filter(p => p.minerStats);
+      const select = document.getElementById('calcMinerSelect');
+      select.innerHTML = miners.map(m =>
+        `<option value="${m.id}">${m.name} (${m.minerStats.hashrate})</option>`
+      ).join('');
+
+      function computeRoi() {
+        const miner = miners.find(m => m.id === select.value) || miners[0];
+        const tariff = parseFloat(document.getElementById('calcTariffInput').value) || 7.5;
+        const qty = Math.max(1, parseInt(document.getElementById('calcQtyInput').value, 10) || 1);
+        const uptime = Math.min(100, Math.max(50, parseFloat(document.getElementById('calcUptimeInput').value) || 98)) / 100;
+
+        document.getElementById('calcTariffDisplay').textContent = `₹${tariff.toFixed(2)} / kWh`;
+
+        const preview = document.getElementById('calcMinerPreview');
+        if (preview.dataset.id !== miner.id) {
+          const first = !preview.dataset.id;
+          preview.dataset.id = miner.id;
+          document.getElementById('calcMinerName').textContent = miner.name;
+          document.getElementById('calcMinerMeta').textContent = `${miner.minerStats.algo} • ${miner.minerStats.hashrate} • ${miner.minerStats.watts.toLocaleString('en-IN')} W`;
+          if (first || prefersReducedMotion) {
+            preview.src = miner.image;
+            preview.alt = miner.name;
+          } else {
+            preview.classList.add('swapping');
+            setTimeout(() => {
+              preview.src = miner.image;
+              preview.alt = miner.name;
+              preview.classList.remove('swapping');
+            }, 220);
+          }
+        }
+
+        const totalWatts = miner.minerStats.watts * qty;
+        const dailyKwh = (totalWatts / 1000) * 24 * uptime;
+        const monthlyPowerCost = dailyKwh * 30 * tariff;
+        const monthlyGross = miner.minerStats.grossDailyInr * qty * 30 * uptime;
+        const monthlyNet = monthlyGross - monthlyPowerCost;
+        const hwCost = miner.wholesale * qty;
+
+        document.getElementById('calcGrossMonth').textContent = formatINR(monthlyGross);
+        document.getElementById('calcPowerMonth').textContent = formatINR(monthlyPowerCost);
+
+        const netEl = document.getElementById('calcNetMonth');
+        netEl.textContent = formatINR(monthlyNet);
+        netEl.className = `text-base sm:text-lg font-extrabold mt-0.5 ${monthlyNet >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+
+        document.getElementById('calcPayback').textContent = monthlyNet > 0 ? `${(hwCost / monthlyNet).toFixed(1)} mo` : 'Unprofitable';
+        document.getElementById('calcHardwareCost').textContent = formatINR(hwCost);
+        document.getElementById('calcWatts').textContent = `${totalWatts.toLocaleString('en-IN')} W`;
+
+        ['calcGrossMonth', 'calcPowerMonth', 'calcNetMonth', 'calcPayback'].forEach(elId => {
+          const el = document.getElementById(elId);
+          if (el.dataset.prev !== el.textContent) {
+            if (el.dataset.prev !== undefined) {
+              el.classList.remove('value-flash');
+              void el.offsetWidth;
+              el.classList.add('value-flash');
+            }
+            el.dataset.prev = el.textContent;
+          }
+        });
+      }
+
+      ['change', 'input'].forEach(evt => {
+        select.addEventListener(evt, computeRoi);
+        document.getElementById('calcTariffInput').addEventListener(evt, computeRoi);
+        document.getElementById('calcQtyInput').addEventListener(evt, computeRoi);
+        document.getElementById('calcUptimeInput').addEventListener(evt, computeRoi);
+      });
+
+      document.getElementById('calcAddMinerBtn').addEventListener('click', () => {
+        const qty = Math.max(1, parseInt(document.getElementById('calcQtyInput').value, 10) || 1);
+        addToCart(select.value, qty, document.getElementById('calcMinerPreview'));
+        setTimeout(openCart, prefersReducedMotion ? 0 : 500);
+      });
+
+      computeRoi();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderProducts();
+      renderCart();
+      initRoiCalculator();
+
+      document.getElementById('pincodeCheckForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const pin = document.getElementById('heroPincodeInput').value.trim();
+        const res = document.getElementById('pincodeCheckResult');
+        res.classList.remove('hidden', 'bg-emerald-950/60', 'border-emerald-500/40', 'text-emerald-300', 'bg-rose-950/60', 'border-rose-500/40', 'text-rose-300');
+        if (/^[1-8][0-9]{5}$/.test(pin)) {
+          res.textContent = `✓ Serviceable in India (${pin}): Insured BlueDart Air delivery in 24–72 hrs.`;
+          res.classList.add('bg-emerald-950/60', 'border-emerald-500/40', 'text-emerald-300');
+        } else {
+          res.textContent = `✕ Invalid or non-Indian pincode. CryptoDrop ships strictly within India (110001–855117).`;
+          res.classList.add('bg-rose-950/60', 'border-rose-500/40', 'text-rose-300');
+        }
+      });
+
+      document.getElementById('searchInput').addEventListener('input', e => {
+        state.search = e.target.value;
+        renderProductsAnimated();
+      });
+      document.getElementById('sortSelect').addEventListener('change', e => {
+        state.sort = e.target.value;
+        renderProductsAnimated();
+      });
+      document.getElementById('resetFiltersBtn').addEventListener('click', () => {
+        state.category = 'All';
+        state.search = '';
+        state.sort = 'featured';
+        document.getElementById('searchInput').value = '';
+        document.getElementById('sortSelect').value = 'featured';
+        renderCategories();
+        renderProductsAnimated();
+      });
+
+      document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+      });
+
+      document.getElementById('openCartBtn').addEventListener('click', openCart);
+      document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+      document.getElementById('cartOverlay').addEventListener('click', closeCart);
+      document.getElementById('closeProductModalBtn').addEventListener('click', () => closeProductModal());
+
+      // Hero showcase: open products, subtle mouse parallax
+      document.querySelectorAll('#heroShowcase .product-open-trigger').forEach(btn => {
+        btn.addEventListener('click', () => openProductModal(btn.dataset.id, btn.querySelector('img')));
+      });
+      const heroSection = document.getElementById('heroShowcase')?.closest('section');
+      if (heroSection && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+        heroSection.addEventListener('mousemove', e => {
+          const r = heroSection.getBoundingClientRect();
+          const nx = (e.clientX - r.left) / r.width - 0.5;
+          const ny = (e.clientY - r.top) / r.height - 0.5;
+          heroSection.querySelectorAll('.parallax').forEach(layer => {
+            const d = parseFloat(layer.dataset.depth) || 10;
+            layer.style.transform = `translate(${-nx * d}px, ${-ny * d}px)`;
+          });
+        });
+        heroSection.addEventListener('mouseleave', () => {
+          heroSection.querySelectorAll('.parallax').forEach(layer => { layer.style.transform = ''; });
+        });
+      }
+
+      // Close dialogs by clicking the backdrop or pressing Escape
+      ['productModal', 'checkoutModal', 'trackerModal'].forEach(mid => {
+        const m = document.getElementById(mid);
+        m.addEventListener('click', e => {
+          if (e.target !== m) return;
+          if (mid === 'productModal') closeProductModal();
+          else {
+            if (mid === 'checkoutModal') clearInterval(cryptoCountdownInterval);
+            hideModal(m);
+          }
+        });
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        const open = document.querySelector('.modal-shell.is-open');
+        if (open) {
+          if (open.id === 'productModal') closeProductModal();
+          else {
+            if (open.id === 'checkoutModal') clearInterval(cryptoCountdownInterval);
+            hideModal(open);
+          }
+        } else if (cartIsOpen) closeCart();
+      });
+
+      // Header elevation + reveal-on-scroll
+      const header = document.getElementById('siteHeader');
+      const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      document.querySelectorAll('.reveal').forEach(observeReveal);
+
+      document.getElementById('promoForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const code = document.getElementById('promoInput').value.trim().toUpperCase();
+        const status = document.getElementById('promoStatus');
+        status.classList.remove('hidden', 'text-emerald-400', 'text-rose-400');
+        if (code === 'CRYPTO10' || code === 'MINER5') {
+          state.promo = code;
+          status.textContent = `Promo ${code} applied!`;
+          status.classList.add('text-emerald-400');
+          renderCart();
+        } else {
+          state.promo = null;
+          status.textContent = 'Invalid code. Try CRYPTO10 or MINER5.';
+          status.classList.add('text-rose-400');
+          renderCart();
+        }
+      });
+
+      document.querySelectorAll('.pay-radio').forEach(r => {
+        r.addEventListener('change', updateCryptoPanel);
+      });
+      document.getElementById('copyCryptoAddrBtn').addEventListener('click', () => {
+        const addr = document.getElementById('cryptoWalletAddr').textContent;
+        copyTextSafe(addr, 'Copied escrow wallet address');
+      });
+
+      const checkoutModal = document.getElementById('checkoutModal');
+      document.getElementById('proceedCheckoutBtn').addEventListener('click', () => {
+        closeCart();
+        document.getElementById('checkoutForm').classList.remove('hidden');
+        document.getElementById('checkoutSuccess').classList.add('hidden');
+        updateCryptoPanel();
+        showModal(checkoutModal);
+      });
+      document.getElementById('closeCheckoutModalBtn').addEventListener('click', () => {
+        clearInterval(cryptoCountdownInterval);
+        hideModal(checkoutModal);
+      });
+      document.getElementById('checkoutForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const totals = getCartTotals();
+        const orderId = 'CD-IN-' + Math.floor(1000 + Math.random() * 9000);
+        const city = document.getElementById('chkCity').value.trim();
+        const stateName = document.getElementById('chkState').value;
+        const pin = document.getElementById('chkPincode').value.trim();
+        const pay = document.querySelector('input[name="payMethod"]:checked').value;
+        const payLabel = (pay === 'BTC' || pay === 'ETH')
+          ? `${pay} (${(totals.total / CRYPTO_RATES[pay].rateInr).toFixed(6)} ${pay} Escrow)`
+          : pay;
+
+        const itemsList = Object.entries(state.cart).map(([id, qty]) => {
+          const p = PRODUCTS.find(x => x.id === id);
+          return p ? `${p.name} x${qty}` : '';
+        }).filter(Boolean).join(', ');
+
+        state.orders[orderId] = {
+          id: orderId,
+          status: `Confirmed (${payLabel}) — Preparing India Dispatch`,
+          city: `${city}, ${stateName}`,
+          items: itemsList,
+          total: `${formatINR(totals.total)} via ${payLabel}`,
+          eta: 'Estimated Dispatch: Within 24 hours (India Only)'
+        };
+
+        document.getElementById('confirmedOrderId').textContent = orderId;
+        document.getElementById('confirmedSummary').innerHTML = `
+          <div><strong>Items:</strong> ${itemsList}</div>
+          <div class="mt-1"><strong>India Destination:</strong> ${city}, ${stateName} (${pin})</div>
+          <div class="mt-1"><strong>Total & Escrow:</strong> ${formatINR(totals.total)} via ${payLabel}</div>
+        `;
+
+        state.cart = {};
+        state.promo = null;
+        saveCart();
+        renderCart();
+        clearInterval(cryptoCountdownInterval);
+
+        document.getElementById('checkoutForm').classList.add('hidden');
+        document.getElementById('checkoutSuccess').classList.remove('hidden');
+      });
+      document.getElementById('doneCheckoutBtn').addEventListener('click', () => hideModal(checkoutModal));
+
+      const trackerModal = document.getElementById('trackerModal');
+      function openTracker() {
+        document.getElementById('mobileMenu').classList.add('hidden');
+        showModal(trackerModal);
+      }
+      document.getElementById('openTrackerNavBtn').addEventListener('click', openTracker);
+      document.getElementById('openTrackerMobileBtn').addEventListener('click', openTracker);
+      document.getElementById('openTrackerFooterBtn').addEventListener('click', openTracker);
+      document.getElementById('closeTrackerBtn').addEventListener('click', () => hideModal(trackerModal));
+      document.getElementById('useSampleOrderBtn').addEventListener('click', () => {
+        document.getElementById('trackerInput').value = 'CD-IN-8842';
+        document.getElementById('trackerForm').dispatchEvent(new Event('submit'));
+      });
+      document.getElementById('trackerForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const id = document.getElementById('trackerInput').value.trim().toUpperCase();
+        const ord = state.orders[id];
+        const res = document.getElementById('trackerResult');
+        if (ord) {
+          res.innerHTML = `
+            <div class="space-y-1.5">
+              <div class="text-emerald-400 font-bold">${ord.status}</div>
+              <div><strong>Order ID:</strong> <span class="font-mono">${ord.id}</span></div>
+              <div><strong>Items:</strong> ${ord.items}</div>
+              <div><strong>Destination:</strong> ${ord.city}</div>
+              <div><strong>Total:</strong> ${ord.total}</div>
+              <div class="text-cyan-300 pt-1">${ord.eta}</div>
+            </div>
+          `;
+        } else {
+          res.innerHTML = `<span class="text-rose-400">No order found for "${id}". Try <strong class="text-white">CD-IN-8842</strong>.</span>`;
+        }
+      });
+
+      document.getElementById('newsletterForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const email = document.getElementById('newsletterEmail').value.trim();
+        if (email) {
+          showToast(`Subscribed ${email} to weekly India ASIC & Tangem drops`);
+          document.getElementById('newsletterEmail').value = '';
+        }
+      });
+
+      document.querySelectorAll('.footer-cat-link').forEach(a => {
+        a.addEventListener('click', () => {
+          state.category = a.dataset.cat;
+          renderCategories();
+          renderProductsAnimated();
+        });
+      });
+
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

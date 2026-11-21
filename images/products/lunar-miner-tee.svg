@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+<defs>
+<radialGradient id="glow" cx="50%" cy="42%" r="62%">
+<stop offset="0%" stop-color="#c084fc" stop-opacity="0.32"/>
+<stop offset="45%" stop-color="#c084fc" stop-opacity="0.08"/>
+<stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="base" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#0b1220"/>
+<stop offset="100%" stop-color="#03060d"/>
+</linearGradient>
+<radialGradient id="floor" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#000" stop-opacity="0.75"/>
+<stop offset="100%" stop-color="#000" stop-opacity="0"/>
+</radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+<path d="M40 0H0V40" fill="none" stroke="#c084fc" stroke-opacity="0.06" stroke-width="1"/>
+</pattern>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#03060d" stop-opacity="0"/>
+<stop offset="100%" stop-color="#03060d" stop-opacity="1"/>
+</linearGradient>
+</defs>
+<rect width="800" height="600" fill="url(#base)"/>
+<rect width="800" height="600" fill="url(#grid)"/>
+<rect width="800" height="600" fill="url(#glow)"/>
+<rect y="380" width="800" height="220" fill="url(#fade)" opacity="0.6"/>
+<circle cx="120" cy="90" r="2" fill="#c084fc" opacity="0.5"/>
+<circle cx="690" cy="130" r="3" fill="#c084fc" opacity="0.35"/>
+<circle cx="640" cy="70" r="1.5" fill="#fff" opacity="0.4"/>
+<circle cx="170" cy="470" r="2" fill="#c084fc" opacity="0.3"/>
+<defs>
+<linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1f2937"/><stop offset="100%" stop-color="#030712"/></linearGradient>
+<radialGradient id="moon" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#f5f3ff"/><stop offset="70%" stop-color="#c4b5fd"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient>
+<filter id="neon" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<ellipse cx="400" cy="520" rx="240" ry="22" fill="url(#floor)"/>
+<path d="M 290 90 Q 400 130 510 90 L 650 150 L 610 260 L 545 235 L 545 510 Q 400 525 255 510 L 255 235 L 190 260 L 150 150 Z" fill="url(#cloth)" stroke="#fff" stroke-opacity="0.12" stroke-width="2"/>
+<path d="M 290 90 Q 400 150 510 90" fill="none" stroke="#374151" stroke-width="10"/>
+<path d="M 255 235 L 255 300 M 545 235 L 545 300" stroke="#000" stroke-opacity="0.4" stroke-width="2"/>
+<g filter="url(#neon)">
+<circle cx="400" cy="300" r="70" fill="url(#moon)" opacity="0.95"/>
+<circle cx="378" cy="282" r="10" fill="#a78bfa" opacity="0.5"/>
+<circle cx="420" cy="320" r="14" fill="#a78bfa" opacity="0.4"/>
+<g fill="none" stroke="#c084fc" stroke-width="3" stroke-linecap="round">
+<path d="M 330 300 H 290 V 360 H 260"/>
+<path d="M 470 300 H 510 V 240 H 540"/>
+<path d="M 400 370 V 420 H 340"/>
+<path d="M 400 230 V 190 H 460"/>
+</g>
+<g fill="#c084fc">
+<circle cx="260" cy="360" r="5"/><circle cx="540" cy="240" r="5"/><circle cx="340" cy="420" r="5"/><circle cx="460" cy="190" r="5"/>
+</g>
+<text x="400" y="470" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="6" fill="#c084fc">HODL THE MOON</text>
+</g>
+</svg>
