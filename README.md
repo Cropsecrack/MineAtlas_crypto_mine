@@ -22,4 +22,5 @@ MineAtlas is a single-file, dark-mode mining hardware and self-custody command c
 Open mineatlas.html in any modern browser. No build step or backend server is required. All electricity calculations are estimates only and do not predict mining profitability.
 
 See our github page right here! : https://cropsecrack.github.io/best-passive-income/
+
 See our youtube channel here! :https://www.youtube.com/watch?v=gsTcnu5GQcg
